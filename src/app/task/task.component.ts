@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { TaskItemComponent } from './task-item/task-item.component';
 import { DUMMY_TASKS } from '../dummy-tasks';
-import { NewTaskComponent } from "./new-task/new-task.component";
+import { NewTaskComponent } from './new-task/new-task.component';
 import { NewTask } from './task.model';
-import { CardComponent } from "../shared/card/card.component";
+import { CardComponent } from '../shared/card/card.component';
+import { TaskService } from './task.service';
 
 @Component({
   selector: 'app-task',
@@ -13,35 +14,21 @@ import { CardComponent } from "../shared/card/card.component";
   styleUrl: './task.component.css',
 })
 export class TaskComponent {
-
   @Input({ required: true }) userId!: string;
   @Input({ required: true }) name!: string;
-  
-  tasks = DUMMY_TASKS;
+
+  constructor(private taskService: TaskService) {}
+
   get selectedUserTasks() {
-    return this.tasks.filter((task) => task.userId === this.userId);
+    return this.taskService.getUserTasks(this.userId);
   }
+
   isAddingTask = false;
 
-  onTaskComplete(id: string) {
-    this.tasks = this.tasks.filter((task) => task.id !== id)
-  }
-  handleAddTask(){
+  handleAddTask() {
     this.isAddingTask = true;
   }
   onCloseClick($event: boolean) {
     this.isAddingTask = $event;
-  }
-
-  handleTaskSubmit($event: NewTask) {
-    this.tasks.unshift({
-      id: Math.random().toString(),
-      userId: this.userId,
-      title: $event.title,
-      summary: $event.summary,
-      dueDate: $event.dueDate,
-    });
-    console.log('asdf')
-    this.isAddingTask = false;
   }
 }
