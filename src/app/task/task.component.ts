@@ -3,11 +3,12 @@ import { TaskItemComponent } from './task-item/task-item.component';
 import { DUMMY_TASKS } from '../dummy-tasks';
 import { NewTaskComponent } from "./new-task/new-task.component";
 import { NewTask } from './task.model';
+import { CardComponent } from "../shared/card/card.component";
 
 @Component({
   selector: 'app-task',
   standalone: true,
-  imports: [TaskItemComponent, NewTaskComponent],
+  imports: [TaskItemComponent, NewTaskComponent, CardComponent],
   templateUrl: './task.component.html',
   styleUrl: './task.component.css',
 })

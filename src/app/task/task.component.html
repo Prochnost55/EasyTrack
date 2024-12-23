@@ -1,18 +1,20 @@
 @if (isAddingTask) {
- <app-new-task (onCloseClick)="onCloseClick($event)" (onSubmit)="handleTaskSubmit($event)"/>
+<app-new-task (onCloseClick)="onCloseClick($event)" (onSubmit)="handleTaskSubmit($event)" />
 }
-<section id="tasks">
-    <header>
-        <h2>{{name}}'s Tasks</h2>
-        <menu>
-            <button (click)="handleAddTask()">Add Task</button>
-        </menu>
-    </header>
-    <ul>
-        @for(task of selectedUserTasks; track task.id){
+<app-card>
+    <section id="tasks">
+        <header>
+            <h2>{{name}}'s Tasks</h2>
+            <menu>
+                <button (click)="handleAddTask()">Add Task</button>
+            </menu>
+        </header>
+        <ul>
+            @for(task of selectedUserTasks; track task.id){
             <li>
-                <app-task-item [task]="task" (complete)="onTaskComplete($event)"/>
+                <app-task-item [task]="task" (complete)="onTaskComplete($event)" />
             </li>
-        }
-    </ul>
-</section>
+            }
+        </ul>
+    </section>
+</app-card>
