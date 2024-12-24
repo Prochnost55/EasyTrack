@@ -9,8 +9,6 @@ interface User {
 
 @Component({
   selector: 'app-user',
-  standalone: true,
-  imports: [CardComponent],
   templateUrl: './user.component.html',
   styleUrl: './user.component.css'
 })
